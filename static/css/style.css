@@ -67,6 +67,7 @@ div.content {
 
 div.content-text {
   padding: 0 15px 0 0;
+  text-align: justify;
 }
 
 div.quals {
