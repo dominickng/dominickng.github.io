@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Dominick Ng</title><link href="http://dominickng.com/" rel="alternate"></link><link href="http://dominickng.com/feeds/photography.atom.xml" rel="self"></link><id>http://dominickng.com/</id><updated>2012-10-11T00:00:00+11:00</updated><entry><title>Night photography: making shutter speed, aperture, ISO work to your advantage</title><link href="http://dominickng.com/blog/2012/10/night-photography/" rel="alternate"></link><updated>2012-10-11T00:00:00+11:00</updated><author><name>Dominick Ng</name></author><id>tag:dominickng.com,2012-10-11:blog/2012/10/night-photography/</id><summary type="html">&lt;p&gt;I would describe myself as an amateur photographer. I like traveling, and much of the reason why I like traveling is to see new places and take photos. I get a kick out of taking great photos in amazing locations.  &lt;/p&gt;
+&lt;p&gt;A few years ago my dad recommended a new camera to me: the Sony NEX-5. It packs a fully-featured DSLR into a body that is only slightly larger than a point-and-shoot camera. It has a great automatic mode that I use for most daylight photography, as well as a fully programmable manual mode. Since its purchase, it has been a constant companion on all the trips I've taken, spanning 4 continents and numerous countries. I've learnt that there is simply no substitute for a high quality camera and a good lens. Nowadays the NEX-5 has been superseded by newer models, but it keeps going strong for me.  &lt;/p&gt;
+&lt;figure class="image"&gt;
+  &lt;img class="img-responsive" src="/images/2012/NEX-5_with18_200.jpg"&gt;
+  &lt;figcaption&gt;Photo from &lt;a href="http://www.dpreview.com/reviews/SonyNex5Nex3"&gt;http://www.dpreview.com/reviews/SonyNex5Nex3&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;There are a few basic factors at play when taking photos, and each one interacts with the others to determine how a shot turns out. As I learnt more about using the manual camera mode, I realised that these were not nearly as complicated as I'd first thought.  &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Shutter speed:&lt;/strong&gt; how long the lens of the camera stays open to take a picture. Typically measured in seconds: the longer the shutter speed, the longer the shot takes, and the more light enters the camera. Typical shutter speeds in daylight are fractions of a second; longer shutter speeds are commonly associated with "blurry" pictures due to the movement of the camera or the subject whilst the camera is capturing the shot.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Aperture:&lt;/strong&gt; how "open" the lens of the camera is when you take your picture. A smaller aperture corresponds to less light being let into the camera, and vice versa. This is measured in &lt;em&gt;F-stops&lt;/em&gt; or &lt;em&gt;F-numbers&lt;/em&gt;, and the basic rule of thumb is that the larger the F-stop, the smaller the aperture. Additionally, aperture affects the &lt;em&gt;depth of field&lt;/em&gt; of the shot: how much horizontal distance in the image is in focus. Larger F-stops (smaller apertures) result in &lt;em&gt;longer&lt;/em&gt; depths of field, meaning that objects at a wider range of distances can all be in focus at once.&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ISO:&lt;/strong&gt; how light-sensitive the camera is. This is roughly analogous to the varying numbers on rolls of film (anyone remember them? ISO 100/200/400?). The lower the number, the less light sensitive the shot; higher numbers result in more noise. A typical test for a good camera is to check the amount of noise present in pictures taken at a very high ISO value (e.g. 12800); less noise means a better camera.
+A particular challenge is night photography. The basic problem is that there is far less light available; and thus the camera must adjust its settings to compensate.  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;It can lengthen the shutter speed, which potentially risks a blurred or smeared shot if the camera or subject is moving&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;It can open the aperture wider (smaller F-stop number), which will reduce the depth of field&lt;/li&gt;
+&lt;li&gt;It can increase the ISO, which may increase the noise and graininess of the shot&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;In automatic mode, point and shoot cameras will typically try a combination of these, which combines their downsides. Hence, you get a shot like this:&lt;/p&gt;
+&lt;figure class="image"&gt;
+  &lt;img class="img-responsive" src="/images/2012/IMGP0270.JPG"&gt;
+  &lt;figcaption&gt;With apologies to Coldplay, in Sydney 2009&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Now, some situations are very difficult to take great shots at (e.g. rock concerts), but spectacular night portraits and landscapes can be taken with just a couple of tricks. The key is simple: use a tripod. This allows you to avoid the worst downsides (ISO too high, aperture too large), and control for the necessary ones (camera stability).  &lt;/p&gt;
+&lt;p&gt;With your camera on a tripod, F16, ISO 200, and shutter speed of 25 seconds, you can take shots like this:  &lt;/p&gt;
+&lt;p&gt;&lt;figure class="image"&gt;
+  &lt;img class="img-responsive" src="/images/2012/DSC06700.JPG"&gt;
+&lt;/figure&gt;  &lt;/p&gt;
+&lt;p&gt;Much better! The tripod compensates for the long exposure time, whilst the ISO is set as low as possible to ensure minimum noise.  &lt;/p&gt;
+&lt;p&gt;Long exposure times allow for some experimentation. The easiest thing to try is movement and light. The following shot was taken next to a busy expressway, with the same settings as above. Fast moving cars aren't picked up by the camera, but their headlights and taillights are:  &lt;/p&gt;
+&lt;figure class="image"&gt;
+  &lt;img class="img-responsive" src="/images/2012/DSC05655.JPG"&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;In this next shot, the subject is standing still whilst I run behind him, shining a torch around his outline and &lt;em&gt;at&lt;/em&gt; the camera while the exposure is running. It takes some practice to get right, but the effect can be amazing.  &lt;/p&gt;
+&lt;figure class="image"&gt;
+  &lt;img class="img-responsive" src="/images/2012/DSC05646.JPG"&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Finally, a useful way of figuring out how to adjust your camera settings correctly in manual mode is to use the &lt;em&gt;exposure value&lt;/em&gt; &lt;em&gt;compensation&lt;/em&gt; (EV). In manual mode, your camera will display this number, e.g. the -0.7 here on the screen of my NEX-5.  &lt;/p&gt;
+&lt;figure class="image"&gt;
+  &lt;img class="img-responsive" src="/images/2012/IMG_0001.jpg"&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;This number is roughly what the camera thinks of the exposure of the current shot: positive numbers indicate overexposure, whilst negative numbers indicate underexposure. It will change depending on your shutter speed, aperture, and ISO settings, as well as the relative brightness of the subject. For night shots, I generally prefer this number to be as close to 0 as possible, and so I use it to help adjust the settings as necessary.  &lt;/p&gt;
+&lt;p&gt;Hopefully this post has inspired some night time photography! &lt;/p&gt;</summary><category term="Photography"></category></entry><entry><title>Fortuitous imaging and the iPhone 5</title><link href="http://dominickng.com/blog/2012/09/fortuitous-imaging-and-iphone-5/" rel="alternate"></link><updated>2012-09-24T00:00:00+10:00</updated><author><name>Dominick Ng</name></author><id>tag:dominickng.com,2012-09-24:blog/2012/09/fortuitous-imaging-and-iphone-5/</id><summary type="html">&lt;p&gt;A couple of weeks ago I went camping at Big Sur, south of Monterey and Carmel on the California State Route 1. It was a lovely spot, and we spent time on a very windy beach, eating S'mores around a campfire, and enjoying being away from civilisation. A very American camping experience!  &lt;/p&gt;
+&lt;p&gt;Once we packed up and headed for home, we detoured south to the lovely &lt;a href="http://www.waterfallswest.com/waterfall.php?id=286"&gt;McWay Falls&lt;/a&gt; near the Julia Pfeiffer Burns National Park. The whole area is incredibly picturesque, and I took a few pictures. They included this one:&lt;/p&gt;
+&lt;figure class="image"&gt;
+  &lt;img class="img-responsive" src="/images/2012/DSC06359.JPG"&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;A friend mentioned that the area looked a little like something out of a video game. With the misty spray, colourful flowers, and vibrant cove, it easily could have been, and I highly recommend a trip down this way should you find yourself the opportunity.  &lt;/p&gt;
+&lt;p&gt;Just a week the trip, Apple announced the iPhone 5, and presented a number of shots taken with the new phone's camera. They included:  &lt;/p&gt;
+&lt;figure class="image"&gt;
+  &lt;img class="img-responsive" src="/images/2012/photo_3.jpg"&gt;
+  &lt;figcaption&gt;Photo from &lt;a href="http://www.apple.com/iphone/gallery/includes/fullphoto3.html"&gt;http://www.apple.com/iphone/gallery/includes/fullphoto3.html&lt;/a&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;Talk about coincidence!&lt;/p&gt;</summary><category term="Photography"></category><category term="Travel"></category><category term="USA"></category><category term="California"></category><category term="Big Sur"></category></entry></feed>
