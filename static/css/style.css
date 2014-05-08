@@ -17,8 +17,9 @@ div.backer {
   background: url('../img/common/background.png');
 }
 
-div.about {
+div.profile-text {
   position: absolute;
+  margin-left: -15px;
   bottom: 20px;
 }
 
@@ -29,6 +30,16 @@ div.name {
 
 div.title {
   font-size: 28px;
+}
+
+@media (max-width: 991px) {
+  div.name {
+    font-size: 40px;
+  }
+
+  div.title {
+    font-size: 20px;
+  }
 }
 
 .blue {
@@ -42,7 +53,7 @@ div.bgblue {
 a.social {
   font-size: 24px;
   margin: 4px 0;
-  padding: 0 10px !important;
+  padding: 0 20px 0 0 !important;
 }
 
 img.github, img.rss {
@@ -76,18 +87,13 @@ div.footer {
 }
 
 div.footer-left {
-  position: absolute;
-  left: 30px;
   text-align: left;
 }
 
 div.footer-center {
-  margin: 0 auto;
 }
 
 div.footer-right {
-  position: absolute;
-  right: 30px;
   text-align: right;
 }
 
@@ -116,4 +122,30 @@ article.hentry {
 
 .post-info {
   margin: 5px 0 15px 0;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    margin: 7.5px 0;
+  }
+  div.profile-text {
+    position: relative;
+    bottom: 0px;
+  }
+
+  div.title {
+    font-size: 18px;
+  }
+
+  div.profile-img {
+    padding: 0;
+  }
+
+  div.quals {
+    text-align: center;
+  }
+
+  div.footer-left, div.footer-center, div.footer-right {
+    text-align: center;
+  }
 }
