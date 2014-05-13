@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Dominick Ng</title><link href="http://dominickng.com/" rel="alternate"></link><link href="http://dominickng.com/feeds/posts/default" rel="self"></link><id>http://dominickng.com/</id><updated>2013-10-20T00:00:00+11:00</updated><entry><title>East Coast (IX): Boston, Day 1</title><link href="http://dominickng.com/blog/2013/10/east-coast-ix-boston-day-1/" rel="alternate"></link><updated>2013-10-20T00:00:00+11:00</updated><author><name>Dominick Ng</name></author><id>tag:dominickng.com,2013-10-20:blog/2013/10/east-coast-ix-boston-day-1/</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Dominick Ng</title><link href="http://dominickng.com/" rel="alternate"></link><link href="http://dominickng.com/feeds/posts/default" rel="self"></link><id>http://dominickng.com/</id><updated>2014-05-13T00:00:00+10:00</updated><entry><title>Migrations</title><link href="http://dominickng.com/blog/2014/05/migrations/" rel="alternate"></link><updated>2014-05-13T00:00:00+10:00</updated><author><name>Dominick Ng</name></author><id>tag:dominickng.com,2014-05-13:blog/2014/05/migrations/</id><summary type="html">&lt;p&gt;I have been compelled by guilt into addressing this long silence (with my last
+entry coming nearly 8 months ago!). It has been an extraordinarily busy time,
+and I'm hopefully nearing the end of a PhD and my studenthood. Excitement lies
+just over the horizon! And so here is a brand spanking new website and blog
+design, as well as a migration away from Blogger and onto a statically
+generated site.&lt;/p&gt;
+&lt;p&gt;In the near future I'll write a full guide on how to migrate from Blogger to
+a &lt;a href="http://getpelican.com"&gt;Pelican-powered&lt;/a&gt; static site backed by
+&lt;a href="https://pages.github.com"&gt;Github Pages&lt;/a&gt; and hosted on a custom
+domain. There's a few tricks along the way - including perhaps the most
+important one of properly redirecting the Blogger site and posts to the new
+site. Google makes it quite difficult to easily migrate away from Blogger -
+particularly if you don't move to an option with your own hosting but use
+Github Pages instead.&lt;/p&gt;
+&lt;p&gt;There will also be further US travel tales, new Europe travel tales, and maybe
+even some PhD related material too. It's a brave new world here in 2014.&lt;/p&gt;</summary><category term="Tech"></category></entry><entry><title>East Coast (IX): Boston, Day 1</title><link href="http://dominickng.com/blog/2013/10/east-coast-ix-boston-day-1/" rel="alternate"></link><updated>2013-10-20T00:00:00+11:00</updated><author><name>Dominick Ng</name></author><id>tag:dominickng.com,2013-10-20:blog/2013/10/east-coast-ix-boston-day-1/</id><summary type="html">
 
 &lt;p&gt;This is the ninth in a series of posts about my East Coast US trip in March 2013 (see the &lt;a href="http://blog.dominickng.com/2013/04/east-coast-i-pitstop-in-detroit.html"&gt;first part&lt;/a&gt;, &lt;a href="http://blog.dominickng.com/2013/05/east-coast-ii-washington-dc-day-1.html"&gt;second part&lt;/a&gt;, &lt;a href="http://blog.dominickng.com/2013/05/east-coast-iii-washington-dc-day-2.html"&gt;third part&lt;/a&gt;, &lt;a href="http://blog.dominickng.com/2013/05/east-coast-iv-new-york-part-1.html"&gt;fourth part&lt;/a&gt;, &lt;a href="http://blog.dominickng.com/2013/06/east-coast-v-new-york-part-2.html"&gt;fifth part&lt;/a&gt;, &lt;a href="http://blog.dominickng.com/2013/06/east-coast-vi-new-york-part-3.html"&gt;sixth part&lt;/a&gt;, &lt;a href="http://blog.dominickng.com/2013/08/east-coast-vii-new-york-part-4.html"&gt;seventh part&lt;/a&gt;, and &lt;a href="http://blog.dominickng.com/2013/09/east-coast-viii-new-york-part-5.html"&gt;eighth part&lt;/a&gt;). Boston, Massachusetts is one of the oldest cities in the United States, having been founded in 1630. I loved the city and my time there, but my memories are tinged by the horror of the &lt;a href="http://blog.dominickng.com/2013/04/terror-and-usa.html"&gt;Boston Marathon bombings&lt;/a&gt;, which occurred just a fortnight after I left the city. Still, I highly recommend a visit for anyone travelling through the northeast United States.&lt;/p&gt;
 
