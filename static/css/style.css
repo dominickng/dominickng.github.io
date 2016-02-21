@@ -18,9 +18,9 @@ div.backer {
 }
 
 div.profile-text {
-  position: absolute;
+  /* position: absolute; */
   margin-left: -15px;
-  bottom: 20px;
+  /* bottom: 20px; */
 }
 
 div.name {
