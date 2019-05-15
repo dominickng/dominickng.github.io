@@ -1,0 +1,5 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.dominickng.floppybird",
+               "sha256_cert_fingerprints": ["61:C8:06:36:06:67:6B:25:D3:C6:96:AC:DD:C2:A3:9A:AD:D1:D3:E2:86:E3:78:8D:22:ED:69:0C:E0:19:CF:81"] }
+}]
