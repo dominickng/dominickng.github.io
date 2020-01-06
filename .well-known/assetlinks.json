@@ -2,4 +2,17 @@
   "relation": ["delegate_permission/common.handle_all_urls", "delegate_permission/common.use_as_origin"],
   "target" : { "namespace": "android_app", "package_name": "com.dominickng.cct",
                "sha256_cert_fingerprints": ["61:C8:06:36:06:67:6B:25:D3:C6:96:AC:DD:C2:A3:9A:AD:D1:D3:E2:86:E3:78:8D:22:ED:69:0C:E0:19:CF:81"] }
-}]
+},
+{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "dev.conn.dominickpostmessage",
+    "sha256_cert_fingerprints": [
+      "FA:2A:03:CB:38:9C:F3:BE:28:E3:CA:7F:DA:2E:FA:4F:4A:96:F3:BC:45:2C:08:A2:16:A1:5D:FD:AB:46:BC:9D",
+      "4F:FF:49:FF:C6:1A:22:E3:BB:6F:E6:E1:E6:5B:40:17:55:C0:A9:F9:02:D9:BF:28:38:0B:AE:A7:46:A0:61:8C",
+      "B5:7D:59:28:8E:F8:A3:CB:CC:B4:DF:F4:C8:91:AF:E0:B2:84:EF:FF:F5:C8:A8:87:A6:34:38:1F:EF:2C:39:AE"
+    ]
+  }
+}
+]
