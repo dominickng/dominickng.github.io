@@ -1,1 +1,0 @@
-import{f as t,o as l,c as n,D as a}from"./CwiI9L3z.js";const s=t({__name:"ProseCode",props:{code:{type:String,default:""},language:{type:String,default:null},filename:{type:String,default:null},highlights:{type:Array,default:()=>[]},meta:{type:String,default:null}},setup(r){return(e,o)=>(l(),n("div",null,[a(e.$slots,"default")]))}});export{s as _};
