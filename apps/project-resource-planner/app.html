@@ -1,0 +1,1046 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Resource Planner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div>
+        <h1>Project Resource Planner</h1>
+        <p class="subtitle">
+          Click any chip to edit · + to add · click headers to rename · × to remove rows/columns ·
+          drag and drop chips or workstreams to move or reorder
+        </p>
+      </div>
+      <div class="header-actions">
+        <button class="action-btn" id="btn-save" disabled>Save</button>
+        <button class="action-btn" id="btn-load">Load</button>
+        <button class="action-btn" id="btn-export">↓ Export JSON</button>
+        <button class="action-btn" id="btn-import">↑ Import JSON</button>
+      </div>
+    </div>
+
+    <div class="scroll-wrap">
+      <table id="main-table"></table>
+    </div>
+
+    <div class="legend" id="legend"></div>
+
+    <!-- Edit Person Modal -->
+    <div class="modal-backdrop" id="modal-edit" style="display: none">
+      <div class="modal" id="modal-edit-box">
+        <h3>Edit Person</h3>
+        <label>Name</label>
+        <input type="text" id="edit-name" placeholder="Enter name" />
+        <label>Role</label>
+        <select id="edit-role"></select>
+        <div class="modal-btns">
+          <button class="btn-primary" id="edit-save">Save</button>
+          <button class="btn-danger" id="edit-delete">Delete</button>
+          <button class="btn-secondary" id="edit-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal-backdrop" id="modal-export" style="display: none">
+      <div class="modal wide" id="modal-export-box">
+        <h3>Export JSON</h3>
+        <p>Copy the JSON below to save or share your chart.</p>
+        <textarea id="export-text" readonly></textarea>
+        <div class="modal-btns">
+          <button class="btn-primary" id="export-copy">Copy to clipboard</button>
+          <button class="btn-secondary" id="export-close">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Import Modal -->
+    <div class="modal-backdrop" id="modal-import" style="display: none">
+      <div class="modal wide" id="modal-import-box">
+        <h3>Import JSON</h3>
+        <p>Paste previously exported JSON to restore your chart.</p>
+        <textarea id="import-text" placeholder="Paste JSON here..."></textarea>
+        <p class="error" id="import-error" style="display: none"></p>
+        <div class="modal-btns">
+          <button class="btn-primary" id="import-load">Load</button>
+          <button class="btn-secondary" id="import-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div class="modal-backdrop" id="modal-confirm" style="display: none">
+      <div class="modal" id="modal-confirm-box">
+        <h3 id="confirm-title">Are you sure?</h3>
+        <p id="confirm-message"></p>
+        <div class="modal-btns">
+          <button class="btn-danger" id="confirm-yes">Delete</button>
+          <button class="btn-secondary" id="confirm-no">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save Modal -->
+    <div class="modal-backdrop" id="modal-save" style="display: none">
+      <div class="modal" id="modal-save-box">
+        <h3>Save Plan</h3>
+        <p class="hint">
+          Saves to browser storage, which may be cleared. Use Export JSON for a permanent copy.
+        </p>
+        <label>Name</label>
+        <input type="text" id="save-name" placeholder="My plan" />
+        <div class="modal-btns">
+          <button class="btn-primary" id="save-confirm">Save</button>
+          <button class="btn-secondary" id="save-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Load Modal -->
+    <div class="modal-backdrop" id="modal-load" style="display: none">
+      <div class="modal wide" id="modal-load-box">
+        <h3>Load Plan</h3>
+        <p>Select a previously saved plan to load.</p>
+        <ul class="save-list" id="load-list"></ul>
+        <div class="modal-btns">
+          <button class="btn-secondary" id="load-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      const INDEX_KEY = "resource-planner-index";
+
+      const INITIAL_DATA = {
+        platforms: [
+          { id: "platform-1", label: "Platform 1", color: "#3B82F6" },
+          { id: "platform-2", label: "Platform 2", color: "#10B981" },
+          { id: "platform-3", label: "Platform 3", color: "#8B5CF6" },
+        ],
+        workstreams: [
+          { id: "workstream-1", label: "Workstream 1" },
+          { id: "workstream-2", label: "Workstream 2" },
+          { id: "workstream-3", label: "Workstream 3" },
+        ],
+        cells: {
+          "workstream-1": {
+            "platform-1": [{ id: "c-1-1", role: "TL", name: "TL" }],
+            "platform-2": [{ id: "c-1-2", role: "IC", name: "IC" }],
+            "platform-3": [],
+          },
+          "workstream-2": {
+            "platform-1": [],
+            "platform-2": [{ id: "c-2-2", role: "TL", name: "TL" }],
+            "platform-3": [{ id: "c-2-3", role: "IC", name: "IC" }],
+          },
+          "workstream-3": { "platform-1": [], "platform-2": [], "platform-3": [] },
+        },
+        platformLeaders: {
+          "platform-1": [{ id: "l-1", role: "EM", name: "EM" }],
+          "platform-2": [{ id: "l-2", role: "EM", name: "EM" }],
+          "platform-3": [],
+        },
+        workstreamSide: {
+          "workstream-1": [
+            { id: "s-1-1", role: "PM", name: "PM" },
+            { id: "s-1-2", role: "Design", name: "Design" },
+          ],
+          "workstream-2": [{ id: "s-2-1", role: "PM", name: "PM" }],
+          "workstream-3": [],
+        },
+      };
+
+      const ROLE_COLORS = {
+        EM: { bg: "#FEF3C7", border: "#F59E0B", text: "#92400E" },
+        UTL: { bg: "#EDE9FE", border: "#8B5CF6", text: "#4C1D95" },
+        TL: { bg: "#DBEAFE", border: "#3B82F6", text: "#1E3A8A" },
+        PM: { bg: "#D1FAE5", border: "#10B981", text: "#064E3B" },
+        Design: { bg: "#FCE7F3", border: "#EC4899", text: "#831843" },
+        Data: { bg: "#E0F2FE", border: "#0EA5E9", text: "#0C4A6E" },
+        IC: { bg: "#F3F4F6", border: "#6B7280", text: "#1F2937" },
+      };
+
+      const EXTRA_COLORS = ["#EF4444", "#06B6D4", "#84CC16", "#F97316"];
+
+      // ── Confirm dialog ─────────────────────────────────────────────────────────
+
+      let confirmResolve = null;
+
+      function showConfirm(title, message) {
+        document.getElementById("confirm-title").textContent = title;
+        document.getElementById("confirm-message").textContent = message;
+        document.getElementById("modal-confirm").style.display = "flex";
+        return new Promise((resolve) => {
+          confirmResolve = resolve;
+        });
+      }
+
+      function closeConfirm(result) {
+        document.getElementById("modal-confirm").style.display = "none";
+        if (confirmResolve) confirmResolve(result);
+        confirmResolve = null;
+      }
+
+      document.getElementById("confirm-yes").addEventListener("click", () => closeConfirm(true));
+      document.getElementById("confirm-no").addEventListener("click", () => closeConfirm(false));
+      document.getElementById("modal-confirm").addEventListener("click", (e) => {
+        if (e.target === document.getElementById("modal-confirm")) closeConfirm(false);
+      });
+
+      // ── State ────────────────────────────────────────────────────────────────────
+
+      let data = JSON.parse(JSON.stringify(INITIAL_DATA));
+      let idCounter = 1000;
+      const newId = () => `id-${++idCounter}`;
+
+      // drag state
+      let dragWsId = null;
+      let dragChip = null; // { person, fromType, wsId, platId }
+      let chipDragOverKey = null;
+
+      // edit modal callbacks
+      let editSaveCb = null;
+      let editDeleteCb = null;
+
+      // dirty tracking
+      let isDirty = false;
+      let currentSaveName = "";
+
+      function markDirty() {
+        isDirty = true;
+        document.getElementById("btn-save").disabled = false;
+      }
+
+      function markClean() {
+        isDirty = false;
+        document.getElementById("btn-save").disabled = true;
+      }
+
+      // ── Persistence ───────────────────────────────────────────────────────────────
+
+      function getSaveIndex() {
+        try {
+          return JSON.parse(localStorage.getItem(INDEX_KEY)) || [];
+        } catch (_) {
+          return [];
+        }
+      }
+
+      function writeSaveIndex(index) {
+        localStorage.setItem(INDEX_KEY, JSON.stringify(index));
+      }
+
+      function savePlan(name) {
+        const index = getSaveIndex();
+        const existing = index.find((e) => e.name === name);
+        const id = existing ? existing.id : `save-${Date.now()}`;
+        localStorage.setItem(`resource-planner-${id}`, JSON.stringify(data));
+        if (existing) {
+          existing.savedAt = new Date().toISOString();
+        } else {
+          index.unshift({ name, id, savedAt: new Date().toISOString() });
+        }
+        writeSaveIndex(index);
+        currentSaveName = name;
+        markClean();
+      }
+
+      function loadPlan(id) {
+        const raw = localStorage.getItem(`resource-planner-${id}`);
+        if (!raw) return false;
+        data = JSON.parse(raw);
+        const entry = getSaveIndex().find((e) => e.id === id);
+        currentSaveName = entry ? entry.name : "";
+        markClean();
+        render();
+        return true;
+      }
+
+      function deletePlan(id) {
+        let index = getSaveIndex();
+        index = index.filter((e) => e.id !== id);
+        writeSaveIndex(index);
+        localStorage.removeItem(`resource-planner-${id}`);
+      }
+
+      // ── Data mutations ────────────────────────────────────────────────────────────
+
+      function updateAndRender() {
+        markDirty();
+        render();
+      }
+
+      function updatePerson(persons, id, name, role) {
+        return persons.map((p) => (p.id === id ? { ...p, name, role } : p));
+      }
+
+      function removePerson(persons, id) {
+        return persons.filter((p) => p.id !== id);
+      }
+
+      function removeChipFromSource(src) {
+        if (src.fromType === "cell") {
+          data.cells[src.wsId][src.platId] = data.cells[src.wsId][src.platId].filter(
+            (p) => p.id !== src.person.id,
+          );
+        } else if (src.fromType === "side") {
+          data.workstreamSide[src.wsId] = data.workstreamSide[src.wsId].filter(
+            (p) => p.id !== src.person.id,
+          );
+        } else if (src.fromType === "leader") {
+          data.platformLeaders[src.platId] = data.platformLeaders[src.platId].filter(
+            (p) => p.id !== src.person.id,
+          );
+        }
+      }
+
+      // ── Edit modal ────────────────────────────────────────────────────────────────
+
+      function openEditModal(person, onSave, onDelete) {
+        const nameInput = document.getElementById("edit-name");
+        const roleSelect = document.getElementById("edit-role");
+        nameInput.value = person.name || "";
+        roleSelect.value = person.role || "IC";
+        editSaveCb = onSave;
+        editDeleteCb = onDelete;
+        document.getElementById("modal-edit").style.display = "flex";
+        nameInput.focus();
+        nameInput.select();
+      }
+
+      function closeEditModal() {
+        document.getElementById("modal-edit").style.display = "none";
+        editSaveCb = null;
+        editDeleteCb = null;
+      }
+
+      // ── Chip helpers ──────────────────────────────────────────────────────────────
+
+      function chipLabel(person) {
+        return person.name === person.role ? person.role : person.name;
+      }
+
+      function makeChip(person, onClick, fromType, wsId, platId) {
+        const colors = ROLE_COLORS[person.role] || ROLE_COLORS.IC;
+        const span = document.createElement("span");
+        span.className = "chip";
+        span.textContent = chipLabel(person);
+        span.style.backgroundColor = colors.bg;
+        span.style.borderColor = colors.border;
+        span.style.color = colors.text;
+        span.draggable = true;
+        span.addEventListener("click", onClick);
+        span.addEventListener("dragstart", (e) => {
+          e.stopPropagation();
+          dragChip = { person, fromType, wsId, platId };
+        });
+        span.addEventListener("dragend", () => {
+          dragChip = null;
+          chipDragOverKey = null;
+          render();
+        });
+        return span;
+      }
+
+      function makeAddChip(onClick) {
+        const btn = document.createElement("button");
+        btn.className = "add-chip";
+        btn.textContent = "+";
+        btn.title = "Add person";
+        btn.addEventListener("click", onClick);
+        return btn;
+      }
+
+      function setDropHighlight(key, color) {
+        if (chipDragOverKey === key) return;
+        // clear old highlight
+        if (chipDragOverKey) {
+          const old = document.querySelector(`[data-drop-key="${chipDragOverKey}"]`);
+          if (old) old.style.backgroundColor = old.dataset.baseBg || "";
+        }
+        chipDragOverKey = key;
+        if (key) {
+          const el = document.querySelector(`[data-drop-key="${key}"]`);
+          if (el) el.style.backgroundColor = color || "#f1f5f9";
+        }
+      }
+
+      function clearDropHighlight() {
+        if (chipDragOverKey) {
+          const el = document.querySelector(`[data-drop-key="${chipDragOverKey}"]`);
+          if (el) el.style.backgroundColor = el.dataset.baseBg || "";
+        }
+        chipDragOverKey = null;
+      }
+
+      function attachDropTarget(el, dropKey, highlightColor, onDrop) {
+        let enterCount = 0;
+        el.dataset.dropKey = dropKey;
+        el.dataset.baseBg = el.style.backgroundColor || "";
+        el.addEventListener("dragenter", (e) => {
+          if (!dragChip) return;
+          e.preventDefault();
+          enterCount++;
+          setDropHighlight(dropKey, highlightColor);
+        });
+        el.addEventListener("dragover", (e) => {
+          if (!dragChip) return;
+          e.preventDefault();
+        });
+        el.addEventListener("dragleave", () => {
+          if (!dragChip) return;
+          enterCount--;
+          if (enterCount <= 0) {
+            enterCount = 0;
+            clearDropHighlight();
+          }
+        });
+        el.addEventListener("drop", (e) => {
+          e.preventDefault();
+          enterCount = 0;
+          clearDropHighlight();
+          if (!dragChip) return;
+          const src = dragChip;
+          dragChip = null;
+          onDrop(src);
+          updateAndRender();
+        });
+      }
+
+      function makeChipsRow(persons, onClickPerson, fromType, wsId, platId) {
+        const row = document.createElement("div");
+        row.className = "chips-row";
+        persons.forEach((person) => {
+          row.appendChild(makeChip(person, () => onClickPerson(person), fromType, wsId, platId));
+        });
+        row.appendChild(
+          makeAddChip(() => {
+            const person = {
+              id: newId(),
+              role: fromType === "leader" ? "EM" : fromType === "side" ? "PM" : "TL",
+              name: "",
+            };
+            person.name = person.role;
+            openEditModal(
+              person,
+              (name, role) => {
+                person.name = name || role;
+                person.role = role;
+                if (fromType === "cell") {
+                  if (!data.cells[wsId][platId]) data.cells[wsId][platId] = [];
+                  data.cells[wsId][platId].push(person);
+                } else if (fromType === "side") {
+                  if (!data.workstreamSide[wsId]) data.workstreamSide[wsId] = [];
+                  data.workstreamSide[wsId].push(person);
+                } else if (fromType === "leader") {
+                  if (!data.platformLeaders[platId]) data.platformLeaders[platId] = [];
+                  data.platformLeaders[platId].push(person);
+                }
+                closeEditModal();
+                updateAndRender();
+              },
+              () => closeEditModal(),
+            );
+          }),
+        );
+        return row;
+      }
+
+      // ── Render ────────────────────────────────────────────────────────────────────
+
+      function render() {
+        const table = document.getElementById("main-table");
+        table.innerHTML = "";
+
+        // ── THEAD ──
+        const thead = table.createTHead();
+        const hrow = thead.insertRow();
+
+        // corner cell
+        const corner = document.createElement("td");
+        corner.style.width = "128px";
+        corner.style.minWidth = "128px";
+        hrow.appendChild(corner);
+
+        // platform header cells
+        data.platforms.forEach((plat) => {
+          const th = document.createElement("th");
+          th.style.padding = "0";
+          th.style.verticalAlign = "bottom";
+
+          const header = document.createElement("div");
+          header.className = "platform-header";
+          header.style.borderColor = plat.color;
+          header.style.backgroundColor = plat.color + "18";
+
+          const top = document.createElement("div");
+          top.className = "platform-header-top";
+
+          const labelInput = document.createElement("input");
+          labelInput.className = "platform-label-input";
+          labelInput.value = plat.label;
+          labelInput.addEventListener("input", (e) => {
+            plat.label = e.target.value;
+            markDirty();
+          });
+
+          const removeBtn = document.createElement("button");
+          removeBtn.className = "remove-btn";
+          removeBtn.title = "Remove platform";
+          removeBtn.textContent = "×";
+          removeBtn.addEventListener("click", async () => {
+            const ok = await showConfirm("Remove platform", `Remove "${plat.label}"?`);
+            if (!ok) return;
+            data.platforms = data.platforms.filter((p) => p.id !== plat.id);
+            delete data.platformLeaders[plat.id];
+            Object.keys(data.cells).forEach((wsId) => delete data.cells[wsId][plat.id]);
+            updateAndRender();
+          });
+
+          top.appendChild(labelInput);
+          top.appendChild(removeBtn);
+          header.appendChild(top);
+
+          const leaders = data.platformLeaders[plat.id] || [];
+          header.appendChild(
+            makeChipsRow(
+              leaders,
+              (person) =>
+                openEditModal(
+                  person,
+                  (name, role) => {
+                    data.platformLeaders[plat.id] = updatePerson(
+                      data.platformLeaders[plat.id],
+                      person.id,
+                      name || role,
+                      role,
+                    );
+                    closeEditModal();
+                    updateAndRender();
+                  },
+                  () => {
+                    data.platformLeaders[plat.id] = removePerson(
+                      data.platformLeaders[plat.id],
+                      person.id,
+                    );
+                    closeEditModal();
+                    updateAndRender();
+                  },
+                ),
+              "leader",
+              null,
+              plat.id,
+            ),
+          );
+          attachDropTarget(header, `leader-${plat.id}`, plat.color + "22", (src) => {
+            if ((data.platformLeaders[plat.id] || []).some((p) => p.id === src.person.id)) return;
+            removeChipFromSource(src);
+            if (!data.platformLeaders[plat.id]) data.platformLeaders[plat.id] = [];
+            data.platformLeaders[plat.id].push(src.person);
+          });
+
+          th.appendChild(header);
+          hrow.appendChild(th);
+        });
+
+        // xfn header (no add platform cell here any more)
+        const xfnTh = document.createElement("td");
+        xfnTh.className = "xfn-header";
+        xfnTh.textContent = "X-Fn";
+        hrow.appendChild(xfnTh);
+
+        // ── TBODY ──
+        const tbody = table.createTBody();
+
+        data.workstreams.forEach((ws, wsIdx) => {
+          const tr = tbody.insertRow();
+          tr.draggable = false;
+          tr.dataset.wsId = ws.id;
+
+          tr.addEventListener("dragstart", (e) => {
+            if (!dragWsId) {
+              e.preventDefault();
+              return;
+            }
+            tr.style.opacity = "0.4";
+          });
+          tr.addEventListener("dragover", (e) => {
+            if (dragChip) return;
+            e.preventDefault();
+            tr.classList.add("drag-over-row");
+          });
+          tr.addEventListener("dragleave", () => {
+            tr.classList.remove("drag-over-row");
+          });
+          tr.addEventListener("drop", (e) => {
+            if (dragChip) return;
+            tr.classList.remove("drag-over-row");
+            const fromId = dragWsId;
+            dragWsId = null;
+            tr.draggable = false;
+            if (!fromId || fromId === ws.id) return;
+            const from = data.workstreams.findIndex((w) => w.id === fromId);
+            const to = data.workstreams.findIndex((w) => w.id === ws.id);
+            const [moved] = data.workstreams.splice(from, 1);
+            data.workstreams.splice(to, 0, moved);
+            updateAndRender();
+          });
+          tr.addEventListener("dragend", () => {
+            tr.style.opacity = "1";
+            tr.draggable = false;
+            dragWsId = null;
+          });
+
+          // label cell
+          const labelTd = document.createElement("td");
+          labelTd.className = "label-cell";
+          if (wsIdx > 0) labelTd.style.borderTop = "1px solid #e2e8f0";
+
+          const labelInner = document.createElement("div");
+          labelInner.className = "label-inner";
+
+          const handle = document.createElement("span");
+          handle.className = "drag-handle";
+          handle.title = "Drag to reorder";
+          handle.textContent = "⠿";
+          handle.addEventListener("mousedown", () => {
+            tr.draggable = true;
+            dragWsId = ws.id;
+          });
+          handle.addEventListener("mouseup", () => {
+            tr.draggable = false;
+          });
+
+          const removeWsBtn = document.createElement("button");
+          removeWsBtn.className = "remove-btn";
+          removeWsBtn.textContent = "×";
+          removeWsBtn.addEventListener("click", async () => {
+            const ok = await showConfirm("Remove workstream", `Remove "${ws.label}"?`);
+            if (!ok) return;
+            data.workstreams = data.workstreams.filter((w) => w.id !== ws.id);
+            delete data.cells[ws.id];
+            delete data.workstreamSide[ws.id];
+            updateAndRender();
+          });
+
+          const wsLabelInput = document.createElement("input");
+          wsLabelInput.className = "label-input";
+          wsLabelInput.value = ws.label;
+          wsLabelInput.addEventListener("input", (e) => {
+            ws.label = e.target.value;
+            markDirty();
+          });
+
+          labelInner.appendChild(handle);
+          labelInner.appendChild(removeWsBtn);
+          labelInner.appendChild(wsLabelInput);
+          labelTd.appendChild(labelInner);
+          tr.appendChild(labelTd);
+
+          // platform cells
+          data.platforms.forEach((plat) => {
+            const isLast = wsIdx === data.workstreams.length - 1;
+            const persons = (data.cells[ws.id] || {})[plat.id] || [];
+
+            const td = document.createElement("td");
+            td.className = "platform-cell";
+            td.style.borderLeft = `2px solid ${plat.color}`;
+            td.style.borderRight = `2px solid ${plat.color}`;
+            td.style.borderTop = wsIdx > 0 ? `1px solid ${plat.color}33` : "none";
+            td.style.borderBottom = isLast ? `2px solid ${plat.color}` : "none";
+            td.style.borderRadius = isLast ? "0 0 12px 12px" : "0";
+            td.style.backgroundColor = plat.color + "08";
+
+            const inner = document.createElement("div");
+            inner.className = "cell-inner";
+            inner.appendChild(
+              makeChipsRow(
+                persons,
+                (person) =>
+                  openEditModal(
+                    person,
+                    (name, role) => {
+                      data.cells[ws.id][plat.id] = updatePerson(
+                        data.cells[ws.id][plat.id],
+                        person.id,
+                        name || role,
+                        role,
+                      );
+                      closeEditModal();
+                      updateAndRender();
+                    },
+                    () => {
+                      data.cells[ws.id][plat.id] = removePerson(
+                        data.cells[ws.id][plat.id],
+                        person.id,
+                      );
+                      closeEditModal();
+                      updateAndRender();
+                    },
+                  ),
+                "cell",
+                ws.id,
+                plat.id,
+              ),
+            );
+            attachDropTarget(td, `cell-${ws.id}-${plat.id}`, plat.color + "22", (src) => {
+              if ((data.cells[ws.id]?.[plat.id] || []).some((p) => p.id === src.person.id)) return;
+              removeChipFromSource(src);
+              if (!data.cells[ws.id]) data.cells[ws.id] = {};
+              if (!data.cells[ws.id][plat.id]) data.cells[ws.id][plat.id] = [];
+              data.cells[ws.id][plat.id].push(src.person);
+            });
+            td.appendChild(inner);
+            tr.appendChild(td);
+          });
+
+          // side cell
+          const sideTd = document.createElement("td");
+          sideTd.className = "side-cell";
+          const sidePersons = data.workstreamSide[ws.id] || [];
+          sideTd.appendChild(
+            makeChipsRow(
+              sidePersons,
+              (person) =>
+                openEditModal(
+                  person,
+                  (name, role) => {
+                    data.workstreamSide[ws.id] = updatePerson(
+                      data.workstreamSide[ws.id],
+                      person.id,
+                      name || role,
+                      role,
+                    );
+                    closeEditModal();
+                    updateAndRender();
+                  },
+                  () => {
+                    data.workstreamSide[ws.id] = removePerson(
+                      data.workstreamSide[ws.id],
+                      person.id,
+                    );
+                    closeEditModal();
+                    updateAndRender();
+                  },
+                ),
+              "side",
+              ws.id,
+              null,
+            ),
+          );
+          attachDropTarget(sideTd, `side-${ws.id}`, "#f1f5f9", (src) => {
+            if ((data.workstreamSide[ws.id] || []).some((p) => p.id === src.person.id)) return;
+            removeChipFromSource(src);
+            if (!data.workstreamSide[ws.id]) data.workstreamSide[ws.id] = [];
+            data.workstreamSide[ws.id].push(src.person);
+          });
+          tr.appendChild(sideTd);
+        });
+
+        // add workstream / add platform row
+        const addWsTr = tbody.insertRow();
+        const addWsTd = document.createElement("td");
+        addWsTd.colSpan = data.platforms.length + 3;
+        addWsTd.style.paddingTop = "8px";
+        const addRowWrap = document.createElement("div");
+        addRowWrap.style.display = "flex";
+        addRowWrap.style.justifyContent = "space-between";
+        addRowWrap.style.alignItems = "center";
+        addRowWrap.appendChild(makeAddRowControl("workstream"));
+        addRowWrap.appendChild(makeAddRowControl("platform"));
+        addWsTd.appendChild(addRowWrap);
+        addWsTr.appendChild(addWsTd);
+
+        // ── Legend ──
+        renderLegend();
+      }
+
+      function makeAddRowControl(type) {
+        const wrap = document.createElement("div");
+
+        const btn = document.createElement("button");
+        btn.className = "dashed-btn";
+        btn.textContent = type === "platform" ? "+ Platform" : "+ Workstream";
+
+        btn.addEventListener("click", () => {
+          wrap.innerHTML = "";
+          const form = document.createElement("div");
+          form.className = "add-row-form";
+
+          const input = document.createElement("input");
+          input.className = "add-input";
+          input.placeholder = type === "platform" ? "Name..." : "Workstream name...";
+
+          const confirm = document.createElement("button");
+          confirm.className = "confirm-btn";
+          confirm.textContent = "✓";
+
+          const cancel = document.createElement("button");
+          cancel.className = "cancel-btn";
+          cancel.textContent = "✕";
+
+          const doAdd = () => {
+            const label = input.value.trim();
+            if (!label) return;
+            const id = newId();
+            if (type === "platform") {
+              const color = EXTRA_COLORS[data.platforms.length % EXTRA_COLORS.length];
+              data.platforms.push({ id, label, color });
+              data.platformLeaders[id] = [];
+              Object.keys(data.cells).forEach((wsId) => {
+                data.cells[wsId][id] = [];
+              });
+            } else {
+              data.workstreams.push({ id, label });
+              data.cells[id] = {};
+              data.platforms.forEach((p) => {
+                data.cells[id][p.id] = [];
+              });
+              data.workstreamSide[id] = [];
+            }
+            updateAndRender();
+          };
+
+          confirm.addEventListener("click", doAdd);
+          cancel.addEventListener("click", () => {
+            wrap.innerHTML = "";
+            wrap.appendChild(btn);
+          });
+          input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") doAdd();
+            if (e.key === "Escape") {
+              wrap.innerHTML = "";
+              wrap.appendChild(btn);
+            }
+          });
+
+          form.appendChild(input);
+          form.appendChild(confirm);
+          form.appendChild(cancel);
+          wrap.appendChild(form);
+          input.focus();
+        });
+
+        wrap.appendChild(btn);
+        return wrap;
+      }
+
+      function renderLegend() {
+        const legend = document.getElementById("legend");
+        legend.innerHTML = "";
+        const label = document.createElement("span");
+        label.className = "legend-label";
+        label.textContent = "Roles:";
+        legend.appendChild(label);
+        Object.entries(ROLE_COLORS).forEach(([role, colors]) => {
+          const chip = document.createElement("span");
+          chip.className = "chip";
+          chip.style.backgroundColor = colors.bg;
+          chip.style.borderColor = colors.border;
+          chip.style.color = colors.text;
+          chip.textContent = role;
+          legend.appendChild(chip);
+        });
+      }
+
+      // ── Edit modal wiring ─────────────────────────────────────────────────────────
+
+      const editRoleSelect = document.getElementById("edit-role");
+      Object.keys(ROLE_COLORS).forEach((role) => {
+        const opt = document.createElement("option");
+        opt.value = role;
+        opt.textContent = role;
+        editRoleSelect.appendChild(opt);
+      });
+
+      document.getElementById("edit-save").addEventListener("click", () => {
+        if (editSaveCb) {
+          const name = document.getElementById("edit-name").value.trim();
+          const role = document.getElementById("edit-role").value;
+          editSaveCb(name || role, role);
+        }
+      });
+
+      document.getElementById("edit-delete").addEventListener("click", async () => {
+        const name = document.getElementById("edit-name").value.trim() || "this person";
+        const ok = await showConfirm("Delete person", `Delete "${name}"?`);
+        if (!ok) return;
+        if (editDeleteCb) editDeleteCb();
+      });
+
+      document.getElementById("edit-cancel").addEventListener("click", closeEditModal);
+
+      document.getElementById("modal-edit").addEventListener("click", (e) => {
+        if (e.target === document.getElementById("modal-edit")) closeEditModal();
+      });
+
+      document.getElementById("edit-name").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") document.getElementById("edit-save").click();
+        if (e.key === "Escape") closeEditModal();
+      });
+
+      // ── Save / Load ────────────────────────────────────────────────────────────
+
+      function openSaveModal() {
+        document.getElementById("save-name").value = currentSaveName;
+        document.getElementById("modal-save").style.display = "flex";
+        setTimeout(() => {
+          const input = document.getElementById("save-name");
+          input.focus();
+          input.select();
+        }, 50);
+      }
+
+      function closeSaveModal() {
+        document.getElementById("modal-save").style.display = "none";
+      }
+
+      document.getElementById("btn-save").addEventListener("click", openSaveModal);
+      document.getElementById("save-cancel").addEventListener("click", closeSaveModal);
+      document.getElementById("modal-save").addEventListener("click", (e) => {
+        if (e.target === document.getElementById("modal-save")) closeSaveModal();
+      });
+
+      document.getElementById("save-confirm").addEventListener("click", () => {
+        const name = document.getElementById("save-name").value.trim();
+        if (!name) return;
+        savePlan(name);
+        closeSaveModal();
+      });
+
+      document.getElementById("save-name").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") document.getElementById("save-confirm").click();
+        if (e.key === "Escape") closeSaveModal();
+      });
+
+      function openLoadModal() {
+        const list = document.getElementById("load-list");
+        const index = getSaveIndex();
+        list.innerHTML = "";
+
+        if (index.length === 0) {
+          const empty = document.createElement("li");
+          empty.className = "save-empty";
+          empty.textContent = "No saved plans yet.";
+          empty.style.cursor = "default";
+          list.appendChild(empty);
+        } else {
+          index.forEach((entry) => {
+            const li = document.createElement("li");
+
+            const info = document.createElement("div");
+            const nameSpan = document.createElement("div");
+            nameSpan.className = "save-name";
+            nameSpan.textContent = entry.name;
+            const dateSpan = document.createElement("div");
+            dateSpan.className = "save-date";
+            dateSpan.textContent = new Date(entry.savedAt).toLocaleString();
+            info.appendChild(nameSpan);
+            info.appendChild(dateSpan);
+
+            const del = document.createElement("button");
+            del.className = "save-delete";
+            del.textContent = "×";
+            del.title = "Delete this save";
+            del.addEventListener("click", async (e) => {
+              e.stopPropagation();
+              const ok = await showConfirm("Delete save", `Delete "${entry.name}"?`);
+              if (!ok) return;
+              deletePlan(entry.id);
+              openLoadModal();
+            });
+
+            li.addEventListener("click", () => {
+              loadPlan(entry.id);
+              closeLoadModal();
+            });
+
+            li.appendChild(info);
+            li.appendChild(del);
+            list.appendChild(li);
+          });
+        }
+
+        document.getElementById("modal-load").style.display = "flex";
+      }
+
+      function closeLoadModal() {
+        document.getElementById("modal-load").style.display = "none";
+      }
+
+      document.getElementById("btn-load").addEventListener("click", openLoadModal);
+      document.getElementById("load-cancel").addEventListener("click", closeLoadModal);
+      document.getElementById("modal-load").addEventListener("click", (e) => {
+        if (e.target === document.getElementById("modal-load")) closeLoadModal();
+      });
+
+      // ── Export / Import ───────────────────────────────────────────────────────────
+
+      document.getElementById("btn-export").addEventListener("click", () => {
+        document.getElementById("export-text").value = JSON.stringify(data, null, 2);
+        document.getElementById("modal-export").style.display = "flex";
+        setTimeout(() => {
+          const ta = document.getElementById("export-text");
+          ta.focus();
+          ta.select();
+        }, 50);
+      });
+
+      document.getElementById("export-copy").addEventListener("click", () => {
+        navigator.clipboard?.writeText(document.getElementById("export-text").value);
+      });
+
+      document.getElementById("export-close").addEventListener("click", () => {
+        document.getElementById("modal-export").style.display = "none";
+      });
+
+      document.getElementById("modal-export").addEventListener("click", (e) => {
+        if (e.target === document.getElementById("modal-export"))
+          document.getElementById("modal-export").style.display = "none";
+      });
+
+      document.getElementById("btn-import").addEventListener("click", () => {
+        document.getElementById("import-text").value = "";
+        document.getElementById("import-error").style.display = "none";
+        document.getElementById("modal-import").style.display = "flex";
+        setTimeout(() => document.getElementById("import-text").focus(), 50);
+      });
+
+      document.getElementById("import-load").addEventListener("click", () => {
+        const text = document.getElementById("import-text").value;
+        try {
+          data = JSON.parse(text);
+          document.getElementById("modal-import").style.display = "none";
+          currentSaveName = "";
+          updateAndRender();
+        } catch (_) {
+          const err = document.getElementById("import-error");
+          err.textContent = "Invalid JSON — please check and try again.";
+          err.style.display = "block";
+        }
+      });
+
+      document.getElementById("import-cancel").addEventListener("click", () => {
+        document.getElementById("modal-import").style.display = "none";
+      });
+
+      document.getElementById("modal-import").addEventListener("click", (e) => {
+        if (e.target === document.getElementById("modal-import"))
+          document.getElementById("modal-import").style.display = "none";
+      });
+
+      // ── Boot ──────────────────────────────────────────────────────────────────────
+
+      render();
+    </script>
+  </body>
+</html>
