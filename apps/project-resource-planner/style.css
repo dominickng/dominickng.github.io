@@ -143,7 +143,7 @@ input.label-input {
   border-width: 2px 2px 0 2px;
   border-style: solid;
   padding: 8px 12px;
-  min-width: 144px;
+  min-width: 180px;
 }
 
 .platform-header-top {
@@ -232,7 +232,9 @@ td.platform-cell {
 
 td.platform-cell .cell-inner {
   padding: 8px 12px;
-  min-width: 144px;
+  width: 180px;
+  min-width: 180px;
+  max-width: 180px;
 }
 
 td.side-cell {
