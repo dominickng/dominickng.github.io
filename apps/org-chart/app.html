@@ -9,6 +9,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
   </head>
   <body>
     <header>
@@ -28,6 +29,7 @@
         <div class="sep"></div>
         <button class="btn" id="btn-export">↑ Export</button>
         <button class="btn" id="btn-import">↓ Import</button>
+        <button class="btn" id="btn-share">Share Link</button>
         <div class="sep"></div>
         <button class="btn" id="btn-theme">◐ Dark</button>
       </div>
@@ -1153,9 +1155,35 @@
       if (savedTheme === "dark") setTheme(true);
 
       // ═══════════════════════════════════════════════════════════════════
+      // SHARE
+      // ═══════════════════════════════════════════════════════════════════
+      document.getElementById("btn-share").addEventListener("click", () => {
+        const compressed = LZString.compressToEncodedURIComponent(exportJSON());
+        const url = window.location.origin + window.location.pathname + "#data=" + compressed;
+        history.replaceState(null, "", url);
+        navigator.clipboard.writeText(url).then(() => {
+          const btn = document.getElementById("btn-share");
+          btn.textContent = "Copied!";
+          setTimeout(() => (btn.textContent = "Share Link"), 2000);
+        });
+      });
+
+      // ═══════════════════════════════════════════════════════════════════
       // INIT
       // ═══════════════════════════════════════════════════════════════════
       RAW.forEach((d) => addNodeToChart(d));
+
+      if (window.location.hash.startsWith("#data=")) {
+        try {
+          const compressed = window.location.hash.slice(6);
+          const json = LZString.decompressFromEncodedURIComponent(compressed);
+          if (json) importJSON(json);
+          history.replaceState(null, "", window.location.pathname);
+        } catch (e) {
+          console.warn("Failed to load shared org chart from URL:", e);
+        }
+      }
+
       reLayout();
       setTimeout(fitToScreen, 80);
     </script>
