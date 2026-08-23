@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="en" class="dark"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>It&#39;s Time for Software Engineering to Grow Up | Dominick Ng</title><meta name="description" content="AI makes finding software exploits casually easy. Security through nobody-bothering has been holding up far more of this industry than we'd like to admit."><link rel="canonical" href="https://dominickng.com/posts/2026/08/its-time-for-software-engineering-to-grow-up/"><!-- OG --><meta property="og:site_name" content="https://dominickng.com"><meta property="og:type" content="website"><meta property="og:url" content="https://dominickng.com/posts/2026/08/its-time-for-software-engineering-to-grow-up/"><meta property="og:title" content="It's Time for Software Engineering to Grow Up | Dominick Ng"><meta property="og:description" content="AI makes finding software exploits casually easy. Security through nobody-bothering has been holding up far more of this industry than we'd like to admit."><meta property="og:image" content="https://dominickng.com/dom-meta.jpg"><!-- Twitter --><meta name="twitter:site" content="@dominickng"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:url" content="https://dominickng.com/posts/2026/08/its-time-for-software-engineering-to-grow-up/"><meta name="twitter:title" content="It's Time for Software Engineering to Grow Up | Dominick Ng"><meta name="twitter:description" content="AI makes finding software exploits casually easy. Security through nobody-bothering has been holding up far more of this industry than we'd like to admit."><meta name="twitter:image" content="https://dominickng.com/dom-meta.jpg"><!-- Favicons --><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><!-- Dark mode init: prevents flash on load, re-applies after each navigation --><script>
+      function applyColorMode() {
+        const stored = localStorage.getItem("color-mode");
+        if (stored === "light") {
+          document.documentElement.classList.remove("dark");
+        } else {
+          document.documentElement.classList.add("dark");
+        }
+      }
+      applyColorMode();
+      document.addEventListener("astro:after-swap", applyColorMode);
+    </script><meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.CDGfc0hd.js"></script><link rel="stylesheet" href="/_astro/about.CDBqo2mQ.css"></head> <body class="bg-slate-50 dark:bg-slate-950 text-zinc-800 dark:text-zinc-200"> <div class="grid grid-rows-[auto_1fr_auto] min-h-screen"> <header class="fixed w-full bg-slate-50 dark:bg-slate-950 z-10"> <nav class="py-5 border-b dark:border-gray-800 font-semibold"> <div class="flex px-6 container max-w-5xl justify-between mx-auto items-center"> <ul class="flex items-baseline space-x-5"> <li class="text-base sm:text-2xl font-bold"> <a href="/">Dominick Ng</a> </li> </ul> <!-- Desktop nav --> <ul class="right-menu hidden md:flex items-center space-x-6 text-lg [&_a]:transition-opacity [&_a:hover]:opacity-70"> <li title="About Me"> <a href="/about" aria-label="About Me">
+About
+</a> </li> <li> <a href="/publications">
+Publications
+</a> </li> <li> <a href="/resume.pdf" target="_blank">Resume</a> </li> <li> <a href="/tools">
+Tools
+</a> </li> <li> <a href="/posts" class="underline">
+Posts
+</a> </li> <li class="flex items-center"> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>1/0*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="16Q3rF" component-url="/_astro/DarkModeToggle.CvE2kstm.js" component-export="default" renderer-url="/_astro/client.svelte.1jLyZpK7.js" props="{&quot;data-astro-transition-persist&quot;:[0,&quot;dark-mode-toggle&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;DarkModeToggle&quot;,&quot;value&quot;:true}" data-astro-transition-persist="dark-mode-toggle" await-children><!--[--><button title="Switch to light theme" class="hover:scale-110 transition-all ease-out hover:cursor-pointer" aria-label="Switch to light theme"><!--[0--><svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg><!--]--></button><!--]--><!--astro:end--></astro-island> </li> </ul> <!-- Mobile: dark mode toggle + hamburger --> <div class="flex items-center gap-3 md:hidden"> <astro-island uid="1guUo8" component-url="/_astro/DarkModeToggle.CvE2kstm.js" component-export="default" renderer-url="/_astro/client.svelte.1jLyZpK7.js" props="{&quot;data-astro-transition-persist&quot;:[0,&quot;dark-mode-toggle-mobile&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;DarkModeToggle&quot;,&quot;value&quot;:true}" data-astro-transition-persist="dark-mode-toggle-mobile" await-children><!--[--><button title="Switch to light theme" class="hover:scale-110 transition-all ease-out hover:cursor-pointer" aria-label="Switch to light theme"><!--[0--><svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg><!--]--></button><!--]--><!--astro:end--></astro-island> <button id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" class="p-1"> <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path> </svg> <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> </div> </div> <!-- Mobile menu panel --> <div id="mobile-menu" class="hidden md:hidden border-t dark:border-gray-800 bg-slate-50 dark:bg-slate-950"> <ul class="flex flex-col px-6 py-4 space-y-4 text-base font-semibold [&_a]:transition-opacity [&_a:hover]:opacity-70"> <li> <a href="/about">About</a> </li> <li> <a href="/publications">Publications</a> </li> <li> <a href="/resume.pdf" target="_blank">Resume</a> </li> <li> <a href="/tools">Tools</a> </li> <li> <a href="/posts" class="underline">Posts</a> </li> <li> <a href="/categories">Categories</a> </li> <li> <a href="/tags">Tags</a> </li> </ul> </div> </nav> <script type="module">function c(){const n=document.getElementById("menu-toggle"),e=document.getElementById("mobile-menu"),t=document.getElementById("menu-icon-open"),s=document.getElementById("menu-icon-close");if(!n||!e||!t||!s)return;function d(){e.classList.add("hidden"),t.classList.remove("hidden"),s.classList.add("hidden"),n.setAttribute("aria-expanded","false")}n.addEventListener("click",()=>{!e.classList.contains("hidden")?d():(e.classList.remove("hidden"),t.classList.add("hidden"),s.classList.remove("hidden"),n.setAttribute("aria-expanded","true"))}),e.querySelectorAll("a").forEach(i=>{i.addEventListener("click",d)})}c();document.addEventListener("astro:after-swap",c);</script> </header> <main class="pt-[73px]">  <div class="px-6 container max-w-5xl mx-auto"> <div class="col-span-12"> <div class="my-5 items-center"> <a href="/posts" class="flex items-center gap-1 text-sky-600 dark:text-sky-400 hover:underline text-sm"> <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"> <path d="M19 12H5M12 5l-7 7 7 7"></path> </svg> <span>Back</span> </a> </div> <header> <h1 class="text-xl dark:text-zinc-300 md:text-3xl lg:text-4xl my-7 font-bold"> It&#39;s Time for Software Engineering to Grow Up </h1>  <p class="text-md sm:text-md my-3 text-zinc-600 dark:text-zinc-400"> AI makes finding software exploits casually easy. Security through nobody-bothering has been holding up far more of this industry than we&#39;d like to admit. </p> <div class="text-xs md:text-base my-8"> <div class="md:flex text-black dark:text-zinc-300 gap-8 text-xs sm:text-sm"> <div class="flex items-center font-semibold gap-4"> <div class="flex items-center"> <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4 mr-1"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path> </svg> <p>24 August 2026</p> </div> <div class="flex items-center gap-1"> <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"> <circle cx="12" cy="12" r="10"></circle> <polyline points="12 6 12 12 16 14"></polyline> </svg> <p>9 min read</p> </div> </div> <div class="flex items-center gap-2 my-3 md:my-0"> <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2"> <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path> </svg> <a href="/categories/ai" class="bg-sky-100 dark:bg-sky-900 text-sky-700 dark:text-sky-300 rounded-md px-2 py-1 hover:bg-sky-200 dark:hover:bg-sky-800 transition-colors"> AI </a> </div> <div class="flex items-center gap-2 flex-wrap my-5 md:my-0"> <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-4 h-4"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path> </svg> <a href="/tags/ai" class="bg-gray-200 dark:bg-slate-700 rounded-md px-2 py-1 hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors"> AI </a><a href="/tags/software engineering" class="bg-gray-200 dark:bg-slate-700 rounded-md px-2 py-1 hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors"> Software Engineering </a><a href="/tags/security" class="bg-gray-200 dark:bg-slate-700 rounded-md px-2 py-1 hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors"> Security </a><a href="/tags/agents" class="bg-gray-200 dark:bg-slate-700 rounded-md px-2 py-1 hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors"> Agents </a> </div> </div> </div> </header> <astro-island uid="1bOi6u" component-url="/_astro/Toc.DJ1onFpy.js" component-export="default" renderer-url="/_astro/client.svelte.1jLyZpK7.js" props="{&quot;links&quot;:[1,[]]}" ssr client="load" opts="{&quot;name&quot;:&quot;Toc&quot;,&quot;value&quot;:true}" await-children><!--[--><!--[-1--><!--]--><!--]--><!--astro:end--></astro-island> <div class="prose prose-pre:max-w-xs sm:prose-pre:max-w-full prose-sm sm:prose-base md:prose-lg prose-h1:no-underline max-w-none prose-zinc dark:prose-invert prose-img:rounded-lg"> <p><a href="https://www.abc.net.au/news/2026-08-10/ai-assistant-hacks-gym-website-aus-cyber-attack/107007986" rel="noopener noreferrer" target="_blank">AI assistant hacks gym website in first known Australian autonomous cyber attack</a>
+was the breathless headline in the ABC a couple of weeks ago. An OpenClaw
+AI assistant, upon being asked to book a place in the gym’s already full
+morning schedule, found a way to bump someone else off the waitlist so that
+its owner could take their place. It took advantage of an unsecured corner
+in the gym’s booking software, where anyone - not just gym staff - who knew
+how to ask could request that the software clear a waitlist place for them.</p>
+<p>Naturally, the article turns to the burning question of AI safety and
+alignment, and who should be accountable for when AI runs rogue. Even the
+discourse on the article’s
+<a href="https://news.ycombinator.com/item?id=49236439" rel="noopener noreferrer" target="_blank">Hacker News posting</a>
+focused primarily on alignment and whether the user or the agent was at fault.
+But I think the real problem here is that the gym software had the hole in the
+first place. This type of bug - known as Broken Access Control - is literally
+the
+<a href="https://owasp.org/Top10/2025/A01_2025-Broken_Access_Control/" rel="noopener noreferrer" target="_blank">number 1 issue in the OWASP Top Ten Web Application Security Risks</a>,
+and has been number one
+<a href="https://owasp.org/Top10/2021/A01_2021-Broken_Access_Control/" rel="noopener noreferrer" target="_blank">since 2021</a>.
+Anyone who was sufficiently determined and skilled could have found the hole in
+exactly the same way the agent did - reading through all the code in the
+website, looking for clues as to how the waitlist might function, and poking
+until something gave way. This is the age-old playbook of security
+professionals, hackers, and pentesters, who have already turned up thousands of
+similar flaws in millions of comparable systems.</p>
+<p>In this case, none of those professionals attacked or tested this gym.
+Exploiting software has always required three main ingredients: the skill to
+find a flaw, the patience to keep poking at it until it gives way, and a motive
+to go looking in the first place. The user just asked for a booking, not
+a break-in, and in response, the agent supplied the skill and the patience.
+Motive - at least a malicious or economic drive - no longer has to come into
+it. Beyond just attackers having better tools through AI to penetrate systems,
+we now see a major shift in the threat model for most software. The question of
+“who would bother targeting this?” used to be enough to justify a lack
+of rigour, effort, or understanding around security. Now, software must contend
+with the spectre of “what will a helpful agent try on behalf of an ordinary
+user who just wants something?”</p>
+<p>Software engineering has long been able to get away with holes like this.
+Finding and exploiting them historically demanded a considerable level of
+expertise and determination, so attacks concentrated on high-value targets -
+software that protects money, intimately private data, or privileged
+applications, or that is used by high-profile individuals. Everything else, and
+there is an enormous amount of everything else, runs at stakes low enough that
+a flaw can sit there silently forever with nobody noticing, because breaking in
+was never worth a professional’s time and energy.</p>
+<p>Knowing where and how these problems occur is hard-won expertise. It’s borne
+of study, experience, and an understanding of threat models, best practices,
+and the capabilities of one’s tools. Much like a bridge can look the part and
+still fail utterly the moment any weight is put upon it, code can seem to work
+but still be riddled with holes. Unlike building bridges, however, there’s very
+little standardisation in the requirements that software should meet before it
+goes out to production - and where those standards do exist, verifying against
+them is laborious for exactly the same reasons that finding the flaws is.</p>
+<p>It has been relatively easy to get away with bugs so long as the thing looks
+like it works, and the likelihood of any real consequence has been low. Between
+them, those two facts have let software engineering lead a charmed existence
+for most of its life. The barrier to entry has been low, and you can enter the
+field and be successful quickly. Unless you’re working on one of those
+aforementioned mission-critical, high-value systems, the chance that security
+really truly matters in an existential way has been slim. I know this because I
+have lived it myself.</p>
+<figure>
+<p><img alt="Sadly (and luckily), this simple exterior hid a critical XSS for nearly a decade." title="Sadly (and luckily), this simple exterior hid a critical XSS for nearly a decade." loading="lazy" decoding="async" fetchpriority="auto" width="2057" height="1113" src="/_astro/screenshot.RmctZVLI_r6F08.webp" ></p>
+<figcaption><em>Sadly (and luckily), this simple exterior hid a critical XSS for nearly a decade.</em></figcaption>
+</figure>
+<p>One of the most successful pieces of software I’ve ever written was a shift
+scheduling webapp. It replaced a process where over 50 casual workers emailed
+in their availabilities, and the coordinator used Excel to match them to
+shifts. You can imagine just how much back-and-forth there was when people had
+last minute changes, special requests, or rescheduling. This error-prone and
+tedious dance became a shiny webapp, where shift information could be posted,
+the workers could submit their availabilities, and the coordinator then
+assigned shifts directly, all without back and forth emails. Stats, timesheet
+calculations, weekly rosters, and stock bookings were some of the extra
+features I added along the way. I was 22 years old, created and maintained the
+system by myself, and was paid the princely sum of a few thousand dollars for
+my work. I had no idea that it would be used for nearly a decade before being
+replaced, with hundreds, possibly thousands of people using it over that time.</p>
+<p>I pulled out the code just recently - untouched for over 10 years - and asked
+Claude Opus 5 to take a look on a whim. Whilst I did a pretty decent job at the
+time, it took Claude just minutes to find critical bugs, including one
+considerably more serious than the gym’s Broken Access Control: a cross-site
+scripting hole that would allow any registered user - i.e. any one of those
+50-odd casual workers - to run code as the coordinator’s admin user, and thus
+extract everything from the site. Every personal detail in the system -
+rosters, timesheets, shifts, contact details, you name it - would have been
+available to anyone who could find and exploit the bug. It’s the kind of thing
+I would have avoided with the benefit of more experience and better tools. But
+as far as I can tell, no one found the issue in ten years, and thankfully, no
+one ever will now that the system has been decommissioned. The security of the
+system partially rested on being unexamined by a sufficiently motivated and
+skilled party, and for a decade, that was enough.</p>
+<p>The era of AI means that the charmed existence of software engineering is
+coming to an end. Much has been made about how junior software engineering
+careers have been
+<a href="https://stackoverflow.blog/2025/12/26/ai-vs-gen-z/" rel="noopener noreferrer" target="_blank">decimated by AI</a>.
+What I actually think is happening is that the expectations for all engineers
+are rising - not just for juniors, but right the way up the experience stack.
+We can no longer get away with software having holes, because where once we
+could rely on obscurity and low stakes to keep them harmless, we will
+increasingly have omnipresent agents poking at systems that nobody bothered to
+test, or that were tested against insufficiently strong standards, turning up
+the flaws that used to sit there silent and unnoticed.</p>
+<p>There’s pressure in the other direction as well. It isn’t only that finding
+flaws has become easier, but that we are also producing far more software for
+those flaws to live in, with an increasing amount of that software written by
+people who have never heard of OWASP and won’t be engaging with it anytime
+soon. The volume of exposed code is climbing steeply just as the cost of
+probing it is going to zero.</p>
+<p>The existential question hanging over all of this is how can we train new
+software engineers if the traditional pathway of writing code with bugs in it
+for a few years to gain the experience to know about and avoid those bugs in
+the future disappears. I have a lot of thoughts about this that I’ll cover in
+other posts, but pretending that the field can continue the way it has for the
+last few decades is just sticking one’s head in the sand while the hurricane
+approaches.</p>
+<p>That brings me back to bridges. Bridges didn’t become trustworthy just because
+we got better at building them. The whole practice of civil engineering evolved
+because our structures fell down, and standards, codes, inspections, and
+licensing followed. Maintenance schedules, reliability through redundant
+systems, overperformance margins, and rigorous testing underwrite the trust we
+implicitly place in civil engineers every time we walk, drive, or ride over
+a bridge. It’s the same with aeronautical, maritime, mechanical, and almost
+every other form of engineering. Software has had almost none of those
+processes, and for the most part we have avoided them because “nobody will
+bother” has been quietly doing the work that building codes, regulations,
+inspections, and mandates have been doing everywhere else. Sadly, but also not
+so sadly, this is no longer going to cut it. We have to expect better and more
+from the field.</p>
+<p>All that being said, growing up doesn’t have to mean onerous licensure. I’d be
+the last person to want software engineering to be regulated by people who’ve
+never shipped anything. But at the very least, threat modelling and security
+basics can no longer be a specialist’s task; they must be inherently understood
+by anyone who wants to call themselves a software engineer. We can’t just defer
+security to twice-a-year rituals to satisfy toothless certifications or sales
+cycles. Our own agents must be pointed at our code and systems before somebody
+else’s agent gets there first. “Nobody would think to try that” is no longer
+good enough as a form of protection, because something now tries everything,
+all the time, and doesn’t need a reason. The same tools that found the hole in
+the gym’s booking system will find the holes in ours, and they’ll do it for us
+if we ask - but using AI to write code without knowing where the holes appear
+and how they hurt users simply isn’t good enough any more. It’s easier to write
+code than ever, and the stakes are higher than ever. It’s time for the field to
+grow up.</p> <div class="flex flex-row flex-wrap md:flex-nowrap justify-between items-center mt-10 gap-2"> <div class="flex flex-row flex-wrap gap-2"> <a href="https://twitter.com/intent/tweet?text=It's%20Time%20for%20Software%20Engineering%20to%20Grow%20Up&url=https%3A%2F%2Fdominickng.com%2Fposts%2F2026%2F08%2Fits-time-for-software-engineering-to-grow-up" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter" class="p-2 bg-gray-200 dark:bg-slate-700 rounded hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors"> <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path> </svg> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdominickng.com%2Fposts%2F2026%2F08%2Fits-time-for-software-engineering-to-grow-up" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="p-2 bg-gray-200 dark:bg-slate-700 rounded hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors"> <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg> </a> <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdominickng.com%2Fposts%2F2026%2F08%2Fits-time-for-software-engineering-to-grow-up" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" class="p-2 bg-gray-200 dark:bg-slate-700 rounded hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors"> <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"> <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path> </svg> </a> <a href="mailto:?subject=It's%20Time%20for%20Software%20Engineering%20to%20Grow%20Up&#38;body=https%3A%2F%2Fdominickng.com%2Fposts%2F2026%2F08%2Fits-time-for-software-engineering-to-grow-up" aria-label="Share via Email" class="p-2 bg-gray-200 dark:bg-slate-700 rounded hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors"> <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"> <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path> </svg> </a> </div> <astro-island uid="ZleCgo" component-url="/_astro/ScrollToTop.DQfQLLSb.js" component-export="default" renderer-url="/_astro/client.svelte.1jLyZpK7.js" props="{}" ssr client="load" opts="{&quot;name&quot;:&quot;ScrollToTop&quot;,&quot;value&quot;:true}" await-children><!--[--><div class="text-gray-400 hover:text-blue-400 text-sm"><button aria-label="Scroll to top of the page" class="flex items-center gap-1">Back to top <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></button></div><!--]--><!--astro:end--></astro-island> </div> </div>  </div> <div class="col-span-12">  </div> </div>  </main> <footer> <div class="mt-5 border-t dark:border-gray-800 text-zinc-700 dark:text-zinc-300"> <div class="px-6 pb-2 container max-w-5xl mx-auto"> <div class="my-3 pb-3 flex flex-col items-center gap-2 md:flex-row md:justify-center md:items-center md:gap-3"> <div class="flex items-center gap-3"> <a href="https://github.com/dominickng" target="_blank" class="inline-block p-1 bg-gray-300 rounded-md dark:bg-slate-700" aria-label="Github"> <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"> <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path> </svg> </a> <a href="https://www.linkedin.com/in/dominickng" target="_blank" class="inline-block p-1 bg-gray-300 rounded-md dark:bg-slate-700" aria-label="LinkedIn"> <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"> <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path> </svg> </a> <a href="https://twitter.com/dominickng" target="_blank" class="inline-block p-1 bg-gray-300 rounded-md dark:bg-slate-700" aria-label="Twitter"> <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor"> <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path> </svg> </a> </div> <span class="p-1">
+© 2012 - 2026 me (at) dominickng (dot) com
+</span> </div> </div> </div> </footer> </div> </body></html>
